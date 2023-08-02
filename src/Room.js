@@ -26,9 +26,10 @@ const Room = ({floorDimensions}) => {
   const addChair = useDimensionStore((state) => state.addChair);
   const v3 = new Vector3( 0.5,0,-0.5 );
   const plane = new Plane(v3,0);
-  const helper = new PlaneHelper(plane,100);
 
-  
+    const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
+
+    const helper = new PlaneHelper(plane,wallsRestriction?100:0);
   // const [showWall,setShowWall] = useState([100,100,100,100])  // const [showWall,setShowWall] = useState([100,100,100,100])
   const addConeHandler = (e) => {
     
@@ -44,7 +45,6 @@ const Room = ({floorDimensions}) => {
     const wall2= useRef()
     const wall3 =useRef()
     const wall4 = useRef()
-    const wallVis =  useRef()
 
 
     useFrame(_=> {
@@ -61,8 +61,15 @@ const Room = ({floorDimensions}) => {
         }
     )
     useEffect(()=>{
-        scene.add(helper)
-    })
+     if (!wallsRestriction){
+         scene.children = scene.children.filter(el=>el.type !="PlaneHelper")
+
+     }
+        else {
+            scene.add(helper)
+     }
+        console.log(scene)
+    },[wallsRestriction])
 
   return (
     <group rotation={[-Math.PI / 2, 0, 0]}>
