@@ -6,13 +6,16 @@ const useDimensionStore = create((set) => ({
     floorY:5,
     thickness:0.5,
     floorX:5,
-    wallsHeight:2.5,    
+    wallsHeight:2.5,
     wallsResrticrion: true,
     clickedChair: '',
     chairs:[],
     P:true,
+    selectedFurniture: "chair",
+    selectFurniture: ((item)=>{set(state=>({selectedFurniture:item}))}),
+
     roomsize :(state)=>{get({width:state.floorX, height:state.wallsHeight,depth:state.floorY})},
-    
+
     setCameraControlsAcitve: (b)=>set(state=>({cameraControlsAcitve:b})),
     updateChairs:(updatedChair,msh)=>set(state=>({chairs:state.chairs.map(chair=>chair.id === updatedChair.id ? updatedChair : chair)}) ),
     clickChair: (id)=>set(state=>({clickedChair:id})),
@@ -24,6 +27,6 @@ const useDimensionStore = create((set) => ({
     setWallRestriction:(bool)=>set(state=>({wallsResrticrion:bool})),
     // min: this.floorX /2,
     // max: this.floorY/2
-   
+
 }));
-export default useDimensionStore;   
+export default useDimensionStore;

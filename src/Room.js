@@ -24,6 +24,7 @@ const Room = ({floorDimensions}) => {
   const thickness =Number(useDimensionStore((state) => state.thickness));
   const chairs = useDimensionStore((state) => state.chairs);
   const addChair = useDimensionStore((state) => state.addChair);
+  const selectedFurniture = useDimensionStore((state) => state.selectedFurniture);
   const v3 = new Vector3( 0.5,0,-0.5 );
   const plane = new Plane(v3,0);
 
@@ -37,7 +38,7 @@ const Room = ({floorDimensions}) => {
 
     console.log("adding chair");
 
-    chairs.length <2 && addChair({ position: e.point, id: crypto.randomUUID() });
+    chairs.length <2 && addChair({ position: e.point, id: crypto.randomUUID(),type:"eloszka" });
   };
     const {scene,camera} = useThree();
     let cam  = camera.position.x
@@ -54,7 +55,7 @@ const Room = ({floorDimensions}) => {
              wall2.current.visible= camera.position.x < wall2.current.position.x
                 wall3.current.visible= camera.position.z < -wall3.current.position.y
                 wall4.current.visible= camera.position.z > -wall4.current.position.y
-   
+
 
 
 

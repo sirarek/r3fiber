@@ -14,6 +14,7 @@ import {
 } from "@react-three/drei";
 import { Vector3, Matrix4, Box3,BoxHelper} from "three";
 import { useFrame } from '@react-three/fiber'
+import CabinetModel from "./components/CabinetModel";
 
 
 
@@ -52,6 +53,7 @@ const Chair = (props) => {
   const isChairActive = props.id === clickedChair;
 
   useLayoutEffect(()=>{
+
     bbox.setFromObject(chairRef.current)
     bbox.getSize(bnd.current)
     bnd.current.multiplyScalar(0.5).negate().setY(0);
@@ -104,10 +106,16 @@ useHelper(chairRef,BoxHelper,"red")
       <Center disableY>
         {isChairActive && (
           <Html position={[0, 1, 0]} className="text-id">
-            {props.id.toString().slice(0, 4)}
+              {/*TODO: styling size change*/}
+              <label for={props.id}>width
+              <input id={props.id} type={"text"}/>
+              </label>
+            {/*{props.id.toString().slice(0, 4)}*/}
           </Html>
         )}
         <ChairModel onClick={chairOnClick} id={props.id} />
+
+
       </Center></group>
     </PivotControls>
   );

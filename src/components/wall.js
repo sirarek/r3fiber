@@ -53,10 +53,10 @@ const Wall = (props,ref) => {
 
 
   return (
-    <group >
+    <group         ref={ ref} position={props.position}>
       { wallsRestriction &&
 
-    <mesh rotation={props.rotation} position={props.position}>
+    <mesh rotation={props.rotation}>
         <boxGeometry args={props.geometry} />
         <meshBasicMaterial
           color={0xf1f1f1}
@@ -66,9 +66,9 @@ const Wall = (props,ref) => {
         />
       </mesh>}
       <mesh
-          ref={ ref}
+
         rotation={props.rotation}
-        position={props.position}
+        // position={props.position}
         onPointerDown={props.handler}
        
       >
