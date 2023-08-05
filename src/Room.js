@@ -38,7 +38,7 @@ const Room = ({floorDimensions}) => {
 
     console.log("adding chair");
 
-    chairs.length <2 && addChair({ position: e.point, id: crypto.randomUUID(),type:"eloszka" });
+    chairs.length <6 && addChair({ position: e.point, id: crypto.randomUUID(),type:selectedFurniture });
   };
     const {scene,camera} = useThree();
     let cam  = camera.position.x

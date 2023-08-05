@@ -113,8 +113,10 @@ useHelper(chairRef,BoxHelper,"red")
             {/*{props.id.toString().slice(0, 4)}*/}
           </Html>
         )}
-        <ChairModel onClick={chairOnClick} id={props.id} />
-
+          {
+              props.type=="chair"?
+        <ChairModel onClick={chairOnClick} id={props.id} />:<CabinetModel onClick={chairOnClick} id={props.id} />
+          }
 
       </Center></group>
     </PivotControls>
