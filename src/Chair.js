@@ -22,7 +22,7 @@ const Chair = (props) => {
   const setClickedChair = useDimensionStore((state) => state.clickChair);
   const ref = useRef();
   const chairRef = useRef();
-
+  const itemRef= useRef("");
   const floorX = useDimensionStore((state) => state.floorX);
   const floorY = useDimensionStore((state) => state.floorY);
   const clickedChair = useDimensionStore((state) => state.clickedChair);
@@ -42,6 +42,15 @@ const Chair = (props) => {
     setClickedChair(d.eventObject.userData.id);
     console.log("elo");
   };
+  const changeWidthHandler = (e)=>{
+    const w = e.target.value
+    if(w <1 || w >5 ) return
+     if(itemRef.current !=""){
+      itemRef.current.children[0].scale.x=w
+    
+        }
+    
+  }
   const mtrx = useMemo(() => {
     const pos = props.position.clone().clamp(min, max);
     return new Matrix4().setPosition(pos.x, pos.y, pos.z);
@@ -54,6 +63,7 @@ const Chair = (props) => {
 
   useLayoutEffect(()=>{
 
+    
     bbox.setFromObject(chairRef.current)
     bbox.getSize(bnd.current)
     bnd.current.multiplyScalar(0.5).negate().setY(0);
@@ -72,7 +82,7 @@ const Chair = (props) => {
   },[d])
 useHelper(chairRef,BoxHelper,"red")
 
-  return (
+    return (
     <PivotControls
       fixed={true}
       anchor={[0,0,0]}
@@ -105,17 +115,17 @@ useHelper(chairRef,BoxHelper,"red")
     ><group  ref={chairRef}>
       <Center disableY>
         {isChairActive && (
-          <Html position={[0, 1, 0]} className="text-id">
+          <Html position={[0, 2, 0]} className="text-id">
               {/*TODO: styling size change*/}
-              <label for={props.id}>width
-              <input id={props.id} type={"text"}/>
+              <label htmlFor={props.id}>width
+              <input id={props.id} type={"number"} max={5} onChange={changeWidthHandler}/>
               </label>
             {/*{props.id.toString().slice(0, 4)}*/}
           </Html>
         )}
           {
               props.type=="chair"?
-        <ChairModel onClick={chairOnClick} id={props.id} />:<CabinetModel onClick={chairOnClick} id={props.id} />
+        <ChairModel ref={itemRef}onClick={chairOnClick} id={props.id} />:<CabinetModel ref={itemRef} onClick={chairOnClick} id={props.id} />
           }
 
       </Center></group>
