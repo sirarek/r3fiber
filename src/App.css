@@ -78,7 +78,11 @@ canvas{
 .text-id{
     background-color: gray;
     color: white;
-    padding: 2px 10 px;
+    padding:2px;
+}
+.width-input {
+  padding: 2px;
+  margin:1px
 }
 #root{
 height: 100%;

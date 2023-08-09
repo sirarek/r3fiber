@@ -30,21 +30,21 @@ const Wall = (props,ref) => {
 
 
   // useFrame(_=> {
-  //   // console.log()
-  //       if (cam != _.camera.position.x){
-  //         cam = _.camera.position.x
-  //         let obj ={
-  //           x:cam,
-  //           y:camera.position.y,
-  //           z:camera.position.z
-  //
-  //         }
-  //         console.log(obj)
-  //         console.log(ref.current.position)
-  //
-  //       }
-  //     }
-  // )
+    //   // console.log()
+    //       if (cam != _.camera.position.x){
+      //         cam = _.camera.position.x
+      //         let obj ={
+        //           x:cam,
+        //           y:camera.position.y,
+        //           z:camera.position.z
+        //
+        //         }
+      //         console.log(obj)
+      //         console.log(ref.current.position)
+      //
+        //       }
+    //     }
+    // )
 
 
   // const cp = new Plane(new Vector3(0.5, 0, -0.5), 0);
@@ -54,43 +54,43 @@ const Wall = (props,ref) => {
 
   return (
     <group         ref={ ref} position={props.position}>
-      { wallsRestriction &&
+    { wallsRestriction &&
 
-    <mesh rotation={props.rotation}>
-        <boxGeometry args={props.geometry} />
-        <meshBasicMaterial
-          color={0xf1f1f1}
-          side={DoubleSide}
+      <mesh rotation={props.rotation}>
+      <boxGeometry args={props.geometry} />
+      <meshBasicMaterial
+      color={0xf1f1f1}
+      side={DoubleSide}
 
-          clippingPlanes={[props.plane]}
-        />
+      clippingPlanes={[props.plane]}
+      />
       </mesh>}
-      <mesh
+    <mesh
 
-        rotation={props.rotation}
-        // position={props.position}
-        onPointerDown={props.handler}
-       
-      >
-        <boxGeometry args={props.geometry} ref={refBox} />
+    rotation={props.rotation}
+    // position={props.position}
+    onPointerDown={props.handler}
 
-        <meshBasicMaterial
-          ref={ref2}
+    >
+    <boxGeometry args={props.geometry} ref={refBox} />
+
+    <meshBasicMaterial
+    ref={ref2}
 
 
-          color={props.color ? props.color : 0xf1f1f1}
-         clippingPlanes={wallsRestriction?[props.plane]:[]}
-        />
-       
-      </mesh>
+    color={props.color ? props.color : 0xf1f1f1}
+    clippingPlanes={wallsRestriction?[props.plane]:[]}
+    />
+
+    </mesh>
     </group>
   );
 };
 export default React.forwardRef( Wall);
 
 // cone.quaternion.setFromUnitVectors(
-//   new THREE.Vector3(0, 1, 0),
-//   intersects[0].normal
-//     .clone()
-//     .transformDirection(intersects[0].object.matrixWorld)
-// );
+  //   new THREE.Vector3(0, 1, 0),
+  //   intersects[0].normal
+  //     .clone()
+  //     .transformDirection(intersects[0].object.matrixWorld)
+  // );
