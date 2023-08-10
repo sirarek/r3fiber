@@ -9,6 +9,7 @@ const ItemSelector = props=>{
         <select onChange={selectHandler}>
             <option value="chair">Chair</option>
             <option value="cabinet">Cabinet</option>
+            <option value="cabinet_morph">Cabinet_morph</option>
         </select>
     )
 }

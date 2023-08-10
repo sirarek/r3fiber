@@ -75,7 +75,7 @@ const Room = ({floorDimensions}) => {
       scene.add(helper)
 
     }
-    console.log(scene)
+    // console.log(scene)
   },[wallsRestriction,angle])
 
   return (

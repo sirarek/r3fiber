@@ -15,6 +15,7 @@ import {
 import { Vector3, Matrix4, Box3,BoxHelper} from "three";
 import { useFrame } from '@react-three/fiber'
 import CabinetModel from "./components/CabinetModel";
+import CabinetMorphModel from "./components/CabinetMoph";
 
 
 
@@ -45,14 +46,24 @@ const Chair = (props) => {
   };
   const changeWidthHandler = (e)=>{
     const w = e.target.value
+    const item = itemRef.current
     if(w <1 || w >5 ) return
-    if(itemRef.current !=""){
-      itemRef.current.children[0].scale.x=w
+    if(item !=""){
+
+    console.log(item)
+      if(item.children[0].morphTargetInfluences!=undefined){
+        item.children[0].morphTargetInfluences[0]=w
+
+
+
+    }else{
+         itemRef.current.children[0].scale.x=w
       setFocus(true)
 
 
     }
 
+  }
   }
   const isActiveHandler = ()=>{
     if (focus){
@@ -134,7 +145,12 @@ const Chair = (props) => {
     )}
     {
       props.type=="chair"?
-        <ChairModel ref={itemRef}onClick={chairOnClick} id={props.id} />:<CabinetModel ref={itemRef} onClick={chairOnClick} id={props.id} />
+        <ChairModel ref={itemRef}onClick={chairOnClick} id={props.id} />
+        :props.type =="cabinet_morph"?
+        <CabinetMorphModel ref={itemRef} onClick={chairOnClick} id={props.id} />:
+
+        <CabinetModel ref={itemRef} onClick={chairOnClick} id={props.id} />
+
     }
 
     </Center></group>
