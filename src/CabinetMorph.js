@@ -6,7 +6,7 @@ import React from "react";
 
 const CabinetMorphModel = (props,ref) => {
   const onClickHandler = props.onClick;
-  const gltf = useLoader(GLTFLoader, "/cabinet_allmorphs.glb");
+  const gltf = useLoader(GLTFLoader, "/cabinet_allmor:hs.glb");
   const scene = useMemo(() => gltf.scene.clone(true), []);
   return (
     <primitive

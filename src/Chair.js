@@ -55,8 +55,12 @@ const Chair = (props) => {
     console.log(item)
 
       if(item.children[0].morphTargetInfluences!=undefined){
+        const morphData = item.children[0];
+        const morphAttIndex = morphData.morphTargetDictionary[b]
 
-        item.children[0].morphTargetInfluences[0]=w
+
+
+        item.children[0].morphTargetInfluences[morphAttIndex]=+w
 
 
 
