@@ -1,17 +1,19 @@
-const FurnitureProperties = props =>{
+import { Html } from "@react-three/drei"
+import {useRef} from "react"
+const FurnitureProperties = ({id,changeWidthHandler}) =>{
+	const ref = useRef();
 	return(
-		<Html position={[0, 2, 0]} className="text-id">
-
+		<Html position={[0, 4, 0]} className="text-id">
 		<label htmlFor="width"> width
-		<input className="width-input"id={props.id} type={"number"} max={5} onFocus={()=>{setFocus(true)}} onBlur={isActiveHandler}  onChange={changeWidthHandler} />
+		<input ref={ref} className="width-input"id={id} type={"number"} max={5}   onChange={(e)=>changeWidthHandler(e,'width')} />
 		</label>  
 		<label htmlFor="height"> height
-		<input className="width-input"id={props.id} type={"number"} max={5} onFocus={()=>{setFocus(true)}} onBlur={isActiveHandler}  onChange={changeWidthHandler} />
+		<input className="width-input"id={id} type={"number"} max={5}    onChange={(e)=>changeWidthHandler(e,'height')} />
 		</label>  <label htmlFor="width"> depth
 
-		<input className="width-input"id={props.id+"depth"} type={"number"} max={5} onFocus={()=>{setFocus(true)}} onBlur={isActiveHandler}  onChange={changeWidthHandler} />
+		<input className="width-input"id={id+"depth"} type={"number"} max={5}    onChange={(e)=>changeWidthHandler(e,'depth')} />
 		</label>
-		{/*{props.id.toString().slice(0, 4)}*/}
+		{/*{id.toString().slice(0, 4)}*/}
 		</Html>
 
 	)

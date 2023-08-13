@@ -16,6 +16,7 @@ import { Vector3, Matrix4, Box3,BoxHelper} from "three";
 import { useFrame } from '@react-three/fiber'
 import CabinetModel from "./components/CabinetModel";
 import CabinetMorphModel from "./components/CabinetMoph";
+import FurnitureProperties from "./components/FurnitureProperties";
 
 
 
@@ -44,14 +45,17 @@ const Chair = (props) => {
     setClickedChair(d.eventObject.userData.id);
     console.log("elo");
   };
-  const changeWidthHandler = (e)=>{
+  const changeWidthHandler = (e,b)=>{
     const w = e.target.value
     const item = itemRef.current
     if(w <1 || w >5 ) return
     if(item !=""){
-
+    
+      console.log(e)
     console.log(item)
+
       if(item.children[0].morphTargetInfluences!=undefined){
+
         item.children[0].morphTargetInfluences[0]=w
 
 
@@ -135,13 +139,14 @@ const Chair = (props) => {
     <group  ref={chairRef}>
     <Center disableY>
     {isChairActive && (
-      <Html position={[0, 2, 0]} className="text-id">
-      {/*TODO: styling size change*/}
-      <label htmlFor={props.id}>width
-      <input className="width-input"id={props.id} type={"number"} max={5} onFocus={()=>{setFocus(true)}} onBlur={isActiveHandler}  onChange={changeWidthHandler} />
-      </label>
-      {/*{props.id.toString().slice(0, 4)}*/}
-      </Html>
+      // <Html position={[0, 2, 0]} className="text-id">
+      // {/*TODO: styling size change*/}
+      // <label htmlFor={props.id}>width
+      // <input className="width-input"id={props.id} type={"number"} max={5} onFocus={()=>{setFocus(true)}} onBlur={isActiveHandler}  onChange={changeWidthHandler} />
+      // </label>
+      // {/*{props.id.toString().slice(0, 4)}*/}
+      // </Html>
+      <FurnitureProperties id = {props.id} changeWidthHandler={changeWidthHandler}/>
     )}
     {
       props.type=="chair"?
