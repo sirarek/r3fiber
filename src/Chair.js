@@ -46,6 +46,13 @@ const Chair = (props) => {
     console.log("elo");
   };
   const changeWidthHandler = (e,b)=>{
+    const mapping={
+      depth:"z",
+      width:"x",
+      height:"y"
+
+
+    }
     const w = e.target.value
     const item = itemRef.current
     if(w <1 || w >5 ) return
@@ -65,7 +72,8 @@ const Chair = (props) => {
 
 
     }else{
-         itemRef.current.children[0].scale.x=w
+      itemRef.current.children[0].scale[mapping[b]]=w
+      console.log(mapping[b])
       setFocus(true)
 
 
@@ -125,6 +133,7 @@ const Chair = (props) => {
       // const x = _tmp.set(m.elements[12], 0, m.elements[14]).clamp(min, max);
       // m.setPosition(x);
       // ref.current.matrix.copy(m);
+      
       if(!matrix.current) return;
       bbox.setFromObject(chairRef.current)
       bbox.getSize(bnd.current);
@@ -140,7 +149,7 @@ const Chair = (props) => {
     // onDragStart={camHandler(false)}
 
     >
-    <group  ref={chairRef}>
+   <group  ref={chairRef}>
     <Center disableY>
     {isChairActive && (
       // <Html position={[0, 2, 0]} className="text-id">
@@ -150,7 +159,7 @@ const Chair = (props) => {
       // </label>
       // {/*{props.id.toString().slice(0, 4)}*/}
       // </Html>
-      <FurnitureProperties id = {props.id} changeWidthHandler={changeWidthHandler}/>
+      <FurnitureProperties id = {props.id} changeWidthHandler={changeWidthHandler} data = {itemRef.current.children[0]}/>
     )}
     {
       props.type=="chair"?
