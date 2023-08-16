@@ -1,9 +1,26 @@
 import { Html } from "@react-three/drei"
-import {useRef} from "react"
+import {useRef, useEffect} from "react"
+import useDimensionStore from "../store/store"
 const FurnitureProperties = ({id,changeWidthHandler}) =>{
+
+	const closeHandler =useDimensionStore(state =>state.clickChair)
+	const htmlRef = useRef();
 	const ref = useRef();
+	 const handleClickOutside = (event) => {
+    if (htmlRef.current && !htmlRef.current.contains(event.target)) {
+      closeHandler("");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 	return(
-		<Html position={[0, 4, 0]} className="text-id">
+		<Html position={[0, 4, 0]} className="text-id" ref={htmlRef}>
+		<div id="close-button" onClick={()=>{closeHandler("")}}>X</div>
 		<label htmlFor="width"> width
 		<input ref={ref} className="width-input"id={id} type={"number"} max={5}   onChange={(e)=>changeWidthHandler(e,'width')} />
 		</label>  
