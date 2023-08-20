@@ -32,6 +32,8 @@ const Chair = (props) => {
   // const camHandler = useDimensionStore(
     //   (state) => state.setCameraControlsAcitve
     // );
+
+	const updateItemDimensions = useDimensionStore(state=>state.updateItemDimensions)
   const bbox = new Box3();
   const bbox1 = new Box3();
   const min = new Vector3(-floorX / 2, 0, -floorY / 2);
@@ -46,6 +48,7 @@ const Chair = (props) => {
     console.log("elo");
   };
   const changeWidthHandler = (e,b)=>{
+
     const mapping={
       depth:"z",
       width:"x",
@@ -53,8 +56,10 @@ const Chair = (props) => {
 
 
     }
-    const w = e.target.value
+    
     const item = itemRef.current
+    updateItemDimensions(item.userData.id)
+    const w = e.target.value
     if(w <1 || w >5 ) return
     if(item !=""){
     

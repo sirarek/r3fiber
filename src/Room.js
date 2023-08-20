@@ -27,7 +27,7 @@ const Room = ({floorDimensions}) => {
   const selectedFurniture = useDimensionStore((state) => state.selectedFurniture); 
   const angle =Math.asin(floorX/ Math.sqrt(Math.pow(floorX,2)+Math.pow(floorY,2)))
 
-    const v3 = new Vector3( 1,0,0 ).applyAxisAngle(new Vector3(0,1,0),angle)
+  const v3 = new Vector3( 1,0,0 ).applyAxisAngle(new Vector3(0,1,0),angle)
   const plane = new Plane(v3,0);
 
   const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
@@ -40,7 +40,14 @@ const Room = ({floorDimensions}) => {
 
     console.log("adding chair");
 
-    chairs.length <2 && addChair({ position: e.point, id: crypto.randomUUID(),type:selectedFurniture });
+    chairs.length <2 && addChair({ 
+      position: e.point, 
+      id: crypto.randomUUID(),
+      type:selectedFurniture,
+      dimensions:{}
+
+
+    });
   };
   const {scene,camera} = useThree();
   let cam  = camera.position.x
@@ -68,8 +75,8 @@ const Room = ({floorDimensions}) => {
 
     }
     else {
-      
-      
+
+
       scene.children = scene.children.filter(el=>el.type !="PlaneHelper")
 
       scene.add(helper)

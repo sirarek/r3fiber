@@ -4,6 +4,7 @@ import useDimensionStore from "../store/store"
 const FurnitureProperties = ({id,changeWidthHandler,data}) =>{
 
 	const closeHandler =useDimensionStore(state =>state.clickChair)
+	const updateItemDimensions = useDimensionStore(state=>state.updateItemDimensions)
 	const htmlRef = useRef();
 	const ref = useRef();
 	 const [currentDimension, setCurrentDimension] = useState({
@@ -16,10 +17,14 @@ const FurnitureProperties = ({id,changeWidthHandler,data}) =>{
 			closeHandler("");
 		}
 	};
+	const currentChair = useDimensionStore(state=>state.getActiveChair)
 
 	useLayoutEffect(() => {
+		const ac = currentChair()
 		console.log("hyh");
-	console.log(data)
+	console.log('content of id',id)
+		console.log("ac",ac)
+
 		if(data.morphTargetInfluences){
 			console.log("if")
 		 setCurrentDimension((prevDimension) => ({
@@ -27,6 +32,7 @@ const FurnitureProperties = ({id,changeWidthHandler,data}) =>{
         width: data.morphTargetInfluences[data.morphTargetDictionary["width"]],
         height: data.morphTargetInfluences[data.morphTargetDictionary["height"]],
         depth: data.morphTargetInfluences[data.morphTargetDictionary["depth"]],
+
       }));
 		}else{
 			console.log("else")

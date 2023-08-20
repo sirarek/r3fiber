@@ -1,7 +1,6 @@
-import { get } from 'react-hook-form';
 import {create} from 'zustand';
 
-const useDimensionStore = create((set) => ({
+const useDimensionStore = create((set,get) => ({
     orginalDimensions:{orginalX:5,orginalY:5},
     floorY:5,
     thickness:0.5,
@@ -25,8 +24,22 @@ const useDimensionStore = create((set) => ({
     changeY:(y)=>set(state=>({floorY:y})),
     changeThickness:(thickness)=>set(state=>({thickness:thickness})),
     setWallRestriction:(bool)=>set(state=>({wallsResrticrion:bool})),
-    // min: this.floorX /2,
-    // max: this.floorY/2
+    getActiveChair:()=>{
+        const activeId = get().clickedChair;
+        const chrs  = get().chairs;
+        console.log('acitve id',activeId)
+        const chair= chrs.find(ch=>ch.id == activeId)
+        console.log('chair',chair
 
-}));
+        )
+        return chair
+
+    },
+    
+    updateItemDimensions: (item)=>{
+        const chrs = get().chairs
+        const itemIndex = chrs.findIndex(el=>el.id==item);
+        const itemToUpdet = chrs[itemIndex];
+        console.log("item to update: ",itemToUpdet)
+}}));
 export default useDimensionStore;
