@@ -28,7 +28,7 @@ const Floor = (props) => {
     <mesh onPointerDown={props.handler} >
       <planeGeometry args={[floorX, floorY]}  />
 
-      <meshStandardMaterial map={floorMap}  />
+      <meshStandardMaterial map={floorMap} metalness={0.9} roughness={0.1} castShadow/>
     </mesh>
   );
 };

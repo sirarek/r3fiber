@@ -28,6 +28,7 @@ import Chair from "./Chair";
 import Chairss from "./Chairss";
 import CameraControl from "./components/CameraContro";
 import TestBox from "./Box";
+import { Environment } from '@react-three/drei'
 const log = (c) => {
   console.log(c);
 };
@@ -48,6 +49,7 @@ function App() {
       <Controls handler={setFloorDimensions} />
       <Slider />
       <Canvas
+   
         // style={{ background: `#${background.toString(16)}` }}
         // onKeyDown={(e) => {
         //   return e.code == "Escape" ? setActivePivot(false) : false;
@@ -62,6 +64,7 @@ function App() {
         }}
         gl={{localClippingEnabled:true}}
       >
+    <Environment preset="apartment"  />
         <Mline/>
         <Room />
       

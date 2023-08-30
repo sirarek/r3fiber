@@ -74,8 +74,9 @@ const Wall = (props,ref) => {
     >
     <boxGeometry args={props.geometry} ref={refBox} />
 
-    <meshBasicMaterial
+    <meshStandardMaterial
     ref={ref2}
+ 
 
 
     color={props.color ? props.color : 0xf1f1f1}
