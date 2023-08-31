@@ -56,7 +56,7 @@ const Wall = (props,ref) => {
     <group         ref={ ref} position={props.position}>
     { wallsRestriction &&
 
-      <mesh rotation={props.rotation}>
+      <mesh receiveShadow rotation={props.rotation}>
       <boxGeometry args={props.geometry} />
       <meshBasicMaterial
       color={0xf1f1f1}
@@ -65,7 +65,7 @@ const Wall = (props,ref) => {
       clippingPlanes={[props.plane]}
       />
       </mesh>}
-    <mesh
+    <mesh receiveShadow
 
     rotation={props.rotation}
     // position={props.position}
