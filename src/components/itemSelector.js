@@ -10,6 +10,7 @@ const ItemSelector = props=>{
             <option value="chair">Chair</option>
             <option value="cabinet">Cabinet</option>
             <option value="cabinet_morph">Cabinet_morph</option>
+        <option value="prisoner">prisoner</option>
         </select>
     )
 }

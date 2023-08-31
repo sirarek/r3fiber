@@ -25,10 +25,10 @@ const Floor = (props) => {
     floorMap.wrapS = RepeatWrapping;
     floorMap.wrapT = RepeatWrapping;
     return (
-    <mesh onPointerDown={props.handler} >
+    <mesh onPointerDown={props.handler}  receiveShadow={true}>
       <planeGeometry args={[floorX, floorY]}  />
 
-      <meshStandardMaterial map={floorMap}  />
+      <meshStandardMaterial map={floorMap} roughness={0.1}/>
     </mesh>
   );
 };

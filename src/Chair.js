@@ -17,6 +17,7 @@ import { useFrame } from '@react-three/fiber'
 import CabinetModel from "./components/CabinetModel";
 import CabinetMorphModel from "./components/CabinetMoph";
 import FurnitureProperties from "./components/FurnitureProperties";
+import PrisonerModel from "./components/prisoner";
 
 
 
@@ -58,7 +59,7 @@ const Chair = (props) => {
     }
     
     const item = itemRef.current
-    updateItemDimensions(item.userData.id)
+    updateItemDimensions(item.userData.id,b)
     const w = e.target.value
     if(w <1 || w >5 ) return
     if(item !=""){
@@ -122,6 +123,7 @@ const Chair = (props) => {
   },[d])
   useHelper(chairRef,BoxHelper,"red")
 
+
   return (
     <PivotControls
     fixed={true}
@@ -170,9 +172,7 @@ const Chair = (props) => {
       props.type=="chair"?
         <ChairModel ref={itemRef}onClick={chairOnClick} id={props.id} />
         :props.type =="cabinet_morph"?
-        <CabinetMorphModel ref={itemRef} onClick={chairOnClick} id={props.id} />:
-
-        <CabinetModel ref={itemRef} onClick={chairOnClick} id={props.id} />
+        <CabinetMorphModel ref={itemRef} onClick={chairOnClick} id={props.id} />: props.type=="prisoner"? <PrisonerModel ref={itemRef} onClick={chairOnClick} id={props.id}/>:<CabinetModel ref={itemRef} onClick={chairOnClick} id={props.id} />
 
     }
 

@@ -36,10 +36,12 @@ const useDimensionStore = create((set,get) => ({
 
     },
     
-    updateItemDimensions: (item)=>{
+    updateItemDimensions: (item,dim)=>{
         const chrs = get().chairs
         const itemIndex = chrs.findIndex(el=>el.id==item);
         const itemToUpdet = chrs[itemIndex];
+        
         console.log("item to update: ",itemToUpdet)
+        console.log("item dimType: ",dim)
 }}));
 export default useDimensionStore;
