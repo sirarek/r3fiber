@@ -40,6 +40,7 @@ const useDimensionStore = create((set,get) => ({
         const chrs = get().chairs
         const itemIndex = chrs.findIndex(el=>el.id==item);
         const itemToUpdet = chrs[itemIndex];
+        itemToUpdet.dimensions = {...itemToUpdet.dimensions,...dim}
         
         console.log("item to update: ",itemToUpdet)
         console.log("item dimType: ",dim)

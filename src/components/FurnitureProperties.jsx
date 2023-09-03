@@ -7,41 +7,53 @@ const FurnitureProperties = ({id,changeWidthHandler,data}) =>{
 	const updateItemDimensions = useDimensionStore(state=>state.updateItemDimensions)
 	const htmlRef = useRef();
 	const ref = useRef();
-	 const [currentDimension, setCurrentDimension] = useState({
-    depth: 1,
-    width: 1,
-    height: 1,
-  });
+	 // const [currentDimension, setCurrentDimension] = useState({
+    // depth: 1,
+    // width: 1,
+    // height: 1,
+  // });
+
+
+
 	const handleClickOutside = (event) => {
 		if (htmlRef.current && !htmlRef.current.contains(event.target)) {
 			closeHandler("");
 		}
 	};
 	const currentChair = useDimensionStore(state=>state.getActiveChair)
-
+const ac = currentChair()
+let currentDimension = {...ac.dimensions, ...{ depth: 1,
+    width: 1,
+    height: 1,
+}}
 	useLayoutEffect(() => {
-		const ac = currentChair()
 		console.log("hyh");
 	console.log('content of id',id)
 		console.log("ac",ac)
 
 		if(data.morphTargetInfluences){
 			console.log("if")
-		 setCurrentDimension((prevDimension) => ({
-        ...prevDimension,
+		  currentDimension = {
+        ...{ depth: 1,
+    width: 1,
+    height: 1,
+},
         width: data.morphTargetInfluences[data.morphTargetDictionary["width"]],
         height: data.morphTargetInfluences[data.morphTargetDictionary["height"]],
         depth: data.morphTargetInfluences[data.morphTargetDictionary["depth"]],
 
-      }));
+      };
 		}else{
 			console.log("else")
-			setCurrentDimension((prevDimension) => ({
-        ...prevDimension,
+			  currentDimension = {
+        ...{ depth: 1,
+    width: 1,
+    height: 1,
+},
         depth: data.scale.z,
         width: data.scale.x,
         height: data.scale.y,
-      }));		}
+      };		}
 		window.addEventListener("click", handleClickOutside);
 		return () => {
 			window.removeEventListener("click", handleClickOutside);
@@ -51,13 +63,13 @@ const FurnitureProperties = ({id,changeWidthHandler,data}) =>{
 		<Html position={[0, 4, 0]} className="text-id"  ref={htmlRef}>
 		<div id="close-button" onClick={()=>{closeHandler("")}}>X</div>
 		<label htmlFor="width"> width
-		<input ref={ref} className="width-input"id={id} type={"number"} max={5} defaultValue={currentDimension.width}  onChange={(e)=>changeWidthHandler(e,'width')} />
+		<input ref={ref} className="width-input"id={id} type={"number"} max={5} defaultValue={ac.dimensions.width||currentDimension.width}  onChange={(e)=>changeWidthHandler(e,'width')} />
 		</label>  
 		<label htmlFor="height"> height
-		<input className="width-input"id={id} type={"number"} max={5}  defaultValue={currentDimension.height}  onChange={(e)=>changeWidthHandler(e,'height')} />
+		<input className="width-input"id={id} type={"number"} max={5}  defaultValue={ac.dimensions.height||currentDimension.height}  onChange={(e)=>changeWidthHandler(e,'height')} />
 		</label>  <label htmlFor="width"> depth
 
-		<input className="width-input"id={id+"depth"} type={"number"} max={5}  defaultValue={currentDimension.depth} onChange={(e)=>changeWidthHandler(e,'depth')} />
+		<input className="width-input"id={id+"depth"} type={"number"} max={5}  defaultValue={ac.dimensions.depth||currentDimension.depth} onChange={(e)=>changeWidthHandler(e,'depth')} />
 		</label>
 		{/*{id.toString().slice(0, 4)}*/}
 		</Html>

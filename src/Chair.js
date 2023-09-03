@@ -57,10 +57,11 @@ const Chair = (props) => {
 
 
     }
+      const w = +e.target.value
     
     const item = itemRef.current
-    updateItemDimensions(item.userData.id,b)
-    const w = e.target.value
+    updateItemDimensions(item.userData.id,{[b]:w})
+  
     if(w <1 || w >5 ) return
     if(item !=""){
     
