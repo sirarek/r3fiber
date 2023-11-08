@@ -14,6 +14,7 @@ import {
   MeshBasicMaterial,
   QuadraticBezier,
   DoubleSide,
+  CylinderGeometry,
   BackSide,
   FrontSide,
 } from "three";
@@ -28,6 +29,7 @@ const Wall = (props, ref) => {
   const refBox = useRef();
   const refBox1 = useRef();
   const door = new BoxGeometry();
+  const bar = new BoxGeometry();
   const { scene, camera } = useThree();
   let cam = camera.position.x;
 
@@ -53,34 +55,55 @@ const Wall = (props, ref) => {
 
   return (
     <group ref={ref} position={props.position}>
-      {wallsRestriction && (
-        <mesh receiveShadow rotation={props.rotation}>
-          <boxGeometry args={props.geometry} />
-
-          <meshBasicMaterial
-            color={0xf1f1f1}
-            side={DoubleSide}
-            // clippingPlanes={[props.plane]}
-          />
-        </mesh>
-      )}
       <mesh
         receiveShadow
         rotation={props.rotation}
         // position={props.position}
         onPointerDown={props.handler}
       >
-        <Geometry>
-          <Base>
-            <boxGeometry args={props.geometry} ref={refBox} />
-          </Base>
-          <Subtraction geometry={door} />
-        </Geometry>
+        {props.window ? (
+          <Geometry>
+            <Base>
+              <boxGeometry args={props.geometry} ref={refBox} />
+            </Base>
+            <Subtraction
+              geometry={door}
+              scale={[2.25, 1, 1]}
+              position={[-0.24, 0, 0]}
+            />
+            <Addition
+              geometry={bar}
+              scale={[2.25, 0.1, 0.1]}
+              position={[-0.14, 0, 0]}
+            />
+            <Addition
+              geometry={bar}
+              scale={[2.25, 0.1, 0.1]}
+              position={[-0.15, 0.2, 0]}
+            />
+            <Addition
+              geometry={bar}
+              scale={[2.25, 0.1, 0.1]}
+              position={[-0.15, 0.4, 0]}
+            />
+            <Addition
+              geometry={bar}
+              scale={[2.25, 0.1, 0.1]}
+              position={[-0.15, -0.2, 0]}
+            />
+            <Addition
+              geometry={bar}
+              scale={[2.25, 0.1, 0.1]}
+              position={[-0.15, -0.4, 0]}
+            />
+          </Geometry>
+        ) : (
+          <boxGeometry args={props.geometry} ref={refBox} />
+        )}
         <meshStandardMaterial
           ref={ref2}
           color={props.color ? props.color : 0xf1f1f1}
-          // clippingPlanes={wallsRestriction ? [props.plane] : []}
-        />{" "}
+        />
       </mesh>
     </group>
   );

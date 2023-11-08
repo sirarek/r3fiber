@@ -4,8 +4,8 @@ import React, { useRef, useState, useContext, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Floor from "./components/floor";
 import Mline from "./components/MLine";
-import {debounce} from "throttle-debounce"
- 
+import { debounce } from "throttle-debounce";
+
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Wall from "./components/wall";
 import Lights from "./components/Lights";
@@ -18,10 +18,9 @@ import {
   PivotControls,
   Text,
   Environment,
- 
 } from "@react-three/drei";
 import useDimensionStore from "./store/store";
-import { Vector3, Quaternion, Box3,Sphere } from "three";
+import { Vector3, Quaternion, Box3, Sphere } from "three";
 import ChairModel from "./components/chairModel";
 import Room from "./Room";
 import Controls from "./components/Controls";
@@ -35,22 +34,20 @@ const log = (c) => {
 };
 
 function App() {
-  
   const [floorDimensions, setFloorDimensions] = useState({ x: 5, y: 5 });
   // const [acitvePivot, setActivePivot] = useState(false);
-  // const [background,   
-  
+  // const [background,
+
   // const isCameraControlsActive = useDimensionStore(
   //   (state) => state.cameraControlsAcitve
   // );
-
 
   return (
     <>
       <Controls handler={setFloorDimensions} />
       <Slider />
       <Canvas
-    shadows
+        shadows
         // style={{ background: `#${background.toString(16)}` }}
         // onKeyDown={(e) => {
         //   return e.code == "Escape" ? setActivePivot(false) : false;
@@ -63,18 +60,18 @@ function App() {
           far: 10000,
           position: [0, -10, 0],
         }}
-        gl={{localClippingEnabled:true}}
-    ><Environment preset="apartment"/>
-        <Mline/>
+        gl={{ localClippingEnabled: true }}
+      >
+        <color attach="background" args={["gray"]} />
+        <Environment preset="apartment" />
+        <Mline />
         <Room />
-              <Chairss />
+        <Chairss />
         {/* <TestBox></TestBox> */}
-       <CameraControl/>
+        <CameraControl />
         <Lights />
       </Canvas>
     </>
   );
 }
 export default App;
-
-

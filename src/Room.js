@@ -103,6 +103,7 @@ const Room = ({ floorDimensions }) => {
         plane={plane}
       ></Wall>
       <Wall
+        window={true}
         plane={plane}
         ref={wall2}
         // handler={addConeHandler}
