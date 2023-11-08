@@ -1,7 +1,10 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
+import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
+
 import {
   Vector3,
+  BoxGeometry,
   Matrix4,
   Box3,
   BoxHelper,
@@ -23,6 +26,8 @@ const Wall = (props, ref) => {
   // const ref = useRef();
   const ref2 = useRef();
   const refBox = useRef();
+  const refBox1 = useRef();
+  const door = new BoxGeometry();
   const { scene, camera } = useThree();
   let cam = camera.position.x;
 
@@ -51,10 +56,11 @@ const Wall = (props, ref) => {
       {wallsRestriction && (
         <mesh receiveShadow rotation={props.rotation}>
           <boxGeometry args={props.geometry} />
+
           <meshBasicMaterial
             color={0xf1f1f1}
             side={DoubleSide}
-            clippingPlanes={[props.plane]}
+            // clippingPlanes={[props.plane]}
           />
         </mesh>
       )}
@@ -64,13 +70,17 @@ const Wall = (props, ref) => {
         // position={props.position}
         onPointerDown={props.handler}
       >
-        <boxGeometry args={props.geometry} ref={refBox} />
-
+        <Geometry>
+          <Base>
+            <boxGeometry args={props.geometry} ref={refBox} />
+          </Base>
+          <Subtraction geometry={door} />
+        </Geometry>
         <meshStandardMaterial
           ref={ref2}
           color={props.color ? props.color : 0xf1f1f1}
-          clippingPlanes={wallsRestriction ? [props.plane] : []}
-        />
+          // clippingPlanes={wallsRestriction ? [props.plane] : []}
+        />{" "}
       </mesh>
     </group>
   );
