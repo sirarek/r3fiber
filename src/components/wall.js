@@ -20,7 +20,16 @@ import {
 } from "three";
 import React from "react";
 import useDimensionStore from "../store/store";
-
+const Window = (props) => (
+  <Subtraction {...props}>
+    <Geometry>
+      <Base geometry={door} />
+      <Subtraction geometry={door} scale={[0.05, 1, 1]} />
+      <Subtraction geometry={door} scale={[1, 0.05, 1]} />
+    </Geometry>
+  </Subtraction>
+);
+const door = new BoxGeometry();
 const Wall = (props, ref) => {
   const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
 
@@ -104,6 +113,7 @@ const Wall = (props, ref) => {
           ref={ref2}
           color={props.color ? props.color : 0xf1f1f1}
         />
+        <Window />
       </mesh>
     </group>
   );
