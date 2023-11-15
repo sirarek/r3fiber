@@ -1,6 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
+import Door from "./Door";
 
 import {
   Vector3,
@@ -72,18 +73,20 @@ const Wall = (props, ref) => {
         onPointerDown={props.handler}
       >
         {props.window ? (
-          <Geometry>
-            <Base>
-              <boxGeometry args={props.geometry} ref={refBox} />
-              <Window />
-            </Base>
-            <Subtraction
-              geometry={door}
-              scale={[2.25, 1, 1]}
-              position={[-0.24, 0, 0]}
-            />
-          
-          </Geometry>
+          <>
+            <Geometry>
+              <Base>
+                <boxGeometry args={props.geometry} ref={refBox} />
+                <Window />
+              </Base>
+              <Subtraction
+                geometry={door}
+                scale={[2.25, 1, 1]}
+                position={[-0.24, 0, 0]}
+              />
+            </Geometry>
+            <Door />
+          </>
         ) : (
           <boxGeometry args={props.geometry} ref={refBox} />
         )}
