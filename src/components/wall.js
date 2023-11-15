@@ -83,10 +83,10 @@ const Wall = (props, ref) => {
               <Subtraction
                 geometry={door}
                 scale={[2.25, 1, wallthcikness]}
-                position={[0.15 * x, 0, 0]}
+                position={[0.12 * x, 0, 0]}
               />
             </Geometry>
-            <Door geo={[2.25, 1, wallthcikness]} position={[0.15 * x, 0, 0]} />
+            <Door geo={[2.25, 1, wallthcikness]} position={[0.12 * x, 0, 0]} />
           </>
         ) : (
           <boxGeometry args={props.geometry} ref={refBox} />
