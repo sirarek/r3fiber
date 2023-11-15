@@ -34,7 +34,7 @@ const Window = (props) => (
 
 const Wall = (props, ref) => {
   const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
-
+  const wallthcikness = useDimensionStore((state) => state.thickness);
   // const ref = useRef();
   const ref2 = useRef();
   const refBox = useRef();
@@ -81,11 +81,11 @@ const Wall = (props, ref) => {
               </Base>
               <Subtraction
                 geometry={door}
-                scale={[2.25, 1, 1]}
+                scale={[2.25, 1, wallthcikness]}
                 position={[-0.24, 0, 0]}
               />
             </Geometry>
-            <Door />
+            <Door geo={[2.25, 1, wallthcikness]} position={[-0.24, 0, 0]} />
           </>
         ) : (
           <boxGeometry args={props.geometry} ref={refBox} />

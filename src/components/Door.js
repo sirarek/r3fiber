@@ -1,10 +1,10 @@
 import { BoxGeometry } from "three";
 const Door = (props) => {
   return (
-    <mesh>
+    <mesh position={props.position}>
       <boxGeometry args={props.geo} />
 
-      <meshPhysicalMaterial transparent transmission={0.2} color={0xaac8e6} />
+      <meshPhysicalMaterial transparent transmission={0.7} color={0xaac8e6} />
     </mesh>
   );
 };

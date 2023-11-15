@@ -64,13 +64,13 @@ const Room = ({ floorDimensions }) => {
   const wall3 = useRef();
   const wall4 = useRef();
 
-  useFrame((_) => {
-    // console.log()
-    wall1.current.visible = camera.position.x > wall1.current.position.x;
-    wall2.current.visible = camera.position.x < wall2.current.position.x;
-    wall3.current.visible = camera.position.z < -wall3.current.position.y;
-    wall4.current.visible = camera.position.z > -wall4.current.position.y;
-  });
+  // useFrame((_) => {
+  //   // console.log()
+  //   wall1.current.visible = camera.position.x > wall1.current.position.x;
+  //   wall2.current.visible = camera.position.x < wall2.current.position.x;
+  //   wall3.current.visible = camera.position.z < -wall3.current.position.y;
+  //   wall4.current.visible = camera.position.z > -wall4.current.position.y;
+  // });
   useEffect(() => {
     console.log(angle);
     if (!wallsRestriction) {
