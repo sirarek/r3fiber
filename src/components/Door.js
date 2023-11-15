@@ -8,7 +8,7 @@ const Door = (props) => {
         transparent
         transmission={0.7}
         color={0xaac8e6}
-        roughness={0.1}
+        roughness={0.5}
       />
     </mesh>
   );
