@@ -94,6 +94,7 @@ const Room = ({ floorDimensions }) => {
       <Floor data={floorDimensions} handler={addConeHandler} />
 
       <Wall
+        window={true}
         // handler={addConeHandler}
         key={1}
         ref={wall1}

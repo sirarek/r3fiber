@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 import Door from "./Door";
 
@@ -63,7 +63,8 @@ const Wall = (props, ref) => {
 
   // const cp = new Plane(new Vector3(0.5, 0, -0.5), 0);
   // const ph = new PlaneHelper(cp,10)
-
+  const x = props.position[0] > 0 ? -1 : 1;
+  useLayoutEffect(() => console.log(x), [x]);
   return (
     <group ref={ref} position={props.position}>
       <mesh
@@ -82,10 +83,10 @@ const Wall = (props, ref) => {
               <Subtraction
                 geometry={door}
                 scale={[2.25, 1, wallthcikness]}
-                position={[-0.24, 0, 0]}
+                position={[0.15 * x, 0, 0]}
               />
             </Geometry>
-            <Door geo={[2.25, 1, wallthcikness]} position={[-0.24, 0, 0]} />
+            <Door geo={[2.25, 1, wallthcikness]} position={[0.15 * x, 0, 0]} />
           </>
         ) : (
           <boxGeometry args={props.geometry} ref={refBox} />
