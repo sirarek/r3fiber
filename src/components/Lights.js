@@ -9,6 +9,7 @@ const SphereLight = () => {
         color="white"
         emissive="white"
         emissiveIntensity={6}
+        toneMapped={false}
       />
     </Sphere>
   );

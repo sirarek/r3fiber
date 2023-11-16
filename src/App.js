@@ -4,6 +4,7 @@ import React, { useRef, useState, useContext, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Floor from "./components/floor";
 import Mline from "./components/MLine";
+import Postprocessing from "./components/Postprocessing";
 import { debounce } from "throttle-debounce";
 
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -70,6 +71,7 @@ function App() {
         {/* <TestBox></TestBox> */}
         <CameraControl />
         <Lights />
+        <Postprocessing />
       </Canvas>
     </>
   );
