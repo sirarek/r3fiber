@@ -17,7 +17,7 @@ const Door = (props) => {
       rotation: open ? -Math.PI : 0,
     },
 
-    // config: config.wobbly,
+    config: {},
   });
   const { position } = useSpring({
     from: {
@@ -32,7 +32,7 @@ const Door = (props) => {
       positionz: 0,
     },
     to: {
-      positionz: open ? 0.04 + props.geo[2] : 0,
+      positionz: open ? 0.2 + props.geo[2] : 0,
     },
   });
   return (
@@ -43,6 +43,7 @@ const Door = (props) => {
       rotation-x={rotation}
       position-z={positionz}
       onClick={(e) => {
+        e.stopPropagation();
         setOpen(!open);
         console.log(e);
         console.log(active);
