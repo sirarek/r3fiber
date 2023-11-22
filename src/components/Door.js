@@ -1,16 +1,65 @@
 import { BoxGeometry } from "three";
+import { useState } from "react";
+import { useSpring, animated, config } from "@react-spring/three";
 const Door = (props) => {
+  const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const springs = useSpring({
+    scale: active ? 1.5 : 1,
+    config: config.wobbly,
+  });
+
+  const { rotation } = useSpring({
+    from: {
+      rotation: 0,
+    },
+    to: {
+      rotation: open ? -Math.PI : 0,
+    },
+
+    // config: config.wobbly,
+  });
+  const { position } = useSpring({
+    from: {
+      position: 0,
+    },
+    to: {
+      position: open ? 0 + props.geo[1] : 0,
+    },
+  });
+  const { positionz } = useSpring({
+    from: {
+      positionz: 0,
+    },
+    to: {
+      positionz: open ? 0.04 + props.geo[2] : 0,
+    },
+  });
   return (
-    <mesh position={props.position}>
+    <animated.mesh
+      scale={springs.scale}
+      position={props.position}
+      position-y={position}
+      rotation-x={rotation}
+      position-z={positionz}
+      onClick={(e) => {
+        setOpen(!open);
+        console.log(e);
+        console.log(active);
+        console.log(props.position);
+        // setActive(!active);
+      }}
+    >
       <boxGeometry args={props.geo} />
 
       <meshPhysicalMaterial
+        animated
         transparent
         transmission={0.7}
         color={0xaac8e6}
         roughness={0.5}
       />
-    </mesh>
+    </animated.mesh>
   );
 };
 export default Door;

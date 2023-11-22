@@ -11,9 +11,9 @@ function Postprocessing() {
 
   return (
     <>
-      <EffectComposer multisampling={6} frameBufferType={HalfFloatType}>
-        <Bloom mipmapBlur luminanceThreshold={1} levels={8} />
-        <SSAO
+      {/* <EffectComposer multisampling={6} frameBufferType={HalfFloatType}> */}
+      {/* <Bloom mipmapBlur luminanceThreshold={1} levels={8} /> */}
+      {/* /<SSAO
           blendFunction={BlendFunction.MULTIPLY} // blend mode
           samples={30} // amount of samples per pixel (shouldn't be a multiple of the ring count)
           rings={4} // amount of rings in the occlusion sampling pattern
@@ -28,8 +28,8 @@ function Postprocessing() {
           intensity={20}
           color="black"
           depthAwareUpsampling={true}
-        />
-      </EffectComposer>
+        /> */}
+      {/* </EffectComposer> */}
     </>
   );
 }
