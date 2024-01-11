@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getAllProjects} from "../db/db";
+import {getAllProjects, getProject} from "../db/db";
 
 function ProjectSelector(props) {
 
@@ -18,10 +18,15 @@ function ProjectSelector(props) {
     }, []);
 
 
+   async function selectHandler(e) {
+       const selectedProjctData=  await getProject(e.target.value);
+       console.log(selectedProjctData);
+    }
+
     return(
 
-    <select>
-        {projects && projects.map(item =><option key={item.id} value={item.name} >{item.name}</option>)}
+    <select onChange={selectHandler}>
+        {projects && projects.map(item =><option key={item.id} value={item.uuid} >{item.name}</option>)}
     </select>
     );
 }

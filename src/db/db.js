@@ -7,3 +7,8 @@ export async  function getAllProjects(){
 
 }
 
+export async function getProject(id){
+    const {data,error} = await db.from("r3f").select().eq("uuid",id)
+
+    return data;
+}
