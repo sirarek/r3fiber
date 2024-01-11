@@ -94,7 +94,8 @@ const Chair = (props) => {
     }
   }
   const mtrx = useMemo(() => {
-    const pos = props.position.clone().clamp(min, max);
+    const pos = new Vector3().fromArray((props.position)).clone().clamp(min, max);// new vector3 to solve serailization
+
     return new Matrix4().setPosition(pos.x, pos.y, pos.z);
   }, [props.position]);
 
