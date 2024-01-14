@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {getAllProjects, getProject} from "../db/db";
+import {useNavigate} from "react-router-dom";
 
 function ProjectSelector(props) {
 
@@ -18,9 +19,12 @@ function ProjectSelector(props) {
     }, []);
 
 
-   async function selectHandler(e) {
-       const selectedProjctData=  await getProject(e.target.value);
-       console.log(selectedProjctData);
+    const navigate =useNavigate();
+    function selectHandler(e) {
+
+
+       navigate(e.target.value)
+
     }
 
     return(

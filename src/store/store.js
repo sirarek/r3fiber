@@ -35,6 +35,13 @@ const useDimensionStore = create((set,get) => ({
         return chair
 
     },
+    setFromDb:({floorX,floorY,wallsHeight,thickness,chrs})=>set(state=>({
+        chairs:chrs,
+        floorY,
+        wallsHeight,
+        floorX,
+        thickness
+    })),
     
     updateItemDimensions: (item,dim)=>{
         const chrs = get().chairs

@@ -22,8 +22,11 @@ import {
   useHelper,
 } from "@react-three/drei";
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
+import {exp} from "three/examples/jsm/nodes/math/MathNode";
+import {getProject} from "./db/db";
+import {useLoaderData} from "react-router-dom";
 
-const Room = ({ floorDimensions }) => {
+const   Room = ({ floorDimensions }) => {
   const wallsHeight = useDimensionStore((state) => state.wallsHeight);
   const floorX = Number(useDimensionStore((state) => state.floorX));
   const floorY = Number(useDimensionStore((state) => state.floorY));
@@ -41,6 +44,9 @@ const Room = ({ floorDimensions }) => {
   const plane = new Plane(v3, 0);
 
   const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
+  const setFromdb = useDimensionStore(state => state.setFromDb)
+  const data =useLoaderData();
+
 
   const helper = new PlaneHelper(plane, wallsRestriction ? 100 : 0);
   // const [showWall,setShowWall] = useState([100,100,100,100])  // const [showWall,setShowWall] = useState([100,100,100,100])
@@ -72,6 +78,7 @@ const Room = ({ floorDimensions }) => {
   //   wall4.current.visible = camera.position.z > -wall4.current.position.y;
   // });
   useEffect(() => {
+    setFromdb(JSON.parse(data.data))
     console.log(angle);
     if (!wallsRestriction) {
       scene.children = scene.children.filter((el) => el.type != "PlaneHelper");
@@ -138,3 +145,12 @@ const Room = ({ floorDimensions }) => {
   );
 };
 export default Room;
+
+export async function loader({params}){
+
+  const result =  await getProject(params.projId);
+
+  console.log(result[0])
+
+  return result[0]
+}
