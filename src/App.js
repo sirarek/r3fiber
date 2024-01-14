@@ -30,6 +30,8 @@ import Chairss from "./Chairss";
 import CameraControl from "./components/CameraContro";
 
 import TestBox from "./Box";
+import {useLoaderData} from "react-router-dom";
+import {getProject} from "./db/db";
 const log = (c) => {
   console.log(c);
 };
@@ -42,6 +44,7 @@ function App() {
   // const isCameraControlsActive = useDimensionStore(
   //   (state) => state.cameraControlsAcitve
   // );
+
 
   return (
     <>

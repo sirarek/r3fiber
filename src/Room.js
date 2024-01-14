@@ -45,7 +45,8 @@ const   Room = ({ floorDimensions }) => {
 
   const wallsRestriction = useDimensionStore((state) => state.wallsResrticrion);
   const setFromdb = useDimensionStore(state => state.setFromDb)
-  const data =useLoaderData();
+
+  const data = useLoaderData();
 
 
   const helper = new PlaneHelper(plane, wallsRestriction ? 100 : 0);
@@ -78,7 +79,11 @@ const   Room = ({ floorDimensions }) => {
   //   wall4.current.visible = camera.position.z > -wall4.current.position.y;
   // });
   useEffect(() => {
-    setFromdb(JSON.parse(data.data))
+    if (data){
+      console.log(data)
+
+      setFromdb(JSON.parse(data.data))
+    }
     console.log(angle);
     if (!wallsRestriction) {
       scene.children = scene.children.filter((el) => el.type != "PlaneHelper");
@@ -88,7 +93,7 @@ const   Room = ({ floorDimensions }) => {
       scene.add(helper);
     }
     // console.log(scene)
-  }, [wallsRestriction, angle]);
+  }, [wallsRestriction, angle,data]);
 
   return (
     <group

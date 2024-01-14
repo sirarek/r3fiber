@@ -23,7 +23,9 @@ function ProjectSelector(props) {
     function selectHandler(e) {
 
 
-       navigate(e.target.value)
+       navigate(`../${e.target.value}`)
+        navigate(0)
+
 
     }
 
