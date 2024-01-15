@@ -155,7 +155,9 @@ export async function loader({params}){
 
   const result =  await getProject(params.projId);
 
-  console.log(result[0])
+  if (result){
+    return result[0]
+  }
 
-  return result[0]
+  return null
 }
