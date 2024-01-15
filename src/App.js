@@ -32,6 +32,7 @@ import CameraControl from "./components/CameraContro";
 import TestBox from "./Box";
 import {useLoaderData} from "react-router-dom";
 import {getProject} from "./db/db";
+import ARComponent from "./components/ARComponent";
 const log = (c) => {
   console.log(c);
 };
@@ -46,38 +47,47 @@ function App() {
   // );
 
 
-  return (
-    <>
-      <Controls handler={setFloorDimensions} />
-      <Slider />
-      <Canvas
-        shadows
-        // style={{ background: `#${background.toString(16)}` }}
-        // onKeyDown={(e) => {
-        //   return e.code == "Escape" ? setActivePivot(false) : false;
-        // }}
-        tabIndex={0}
-        camera={{
-          fov: 75,
-          aspect: window.innerWidth / window.innerHeight,
-          near: 0.01,
-          far: 10000,
-          position: [0, -10, 0],
-        }}
-        gl={{ localClippingEnabled: true }}
-      >
-        <color attach="background" args={["gray"]} />
-        <Environment preset="apartment" />
-        <Mline />
-        <Room />
-        <Chairss />
-        {/* <TestBox></TestBox> */}
-        <CameraControl />
-        <Lights />
-        <Postprocessing />
-      </Canvas>
-    </>
-  );
+
+    return (
+        <>
+            <a id="link" rel="ar" href="" download="asset.usdz">
+                <img id="button" width="100" src="files/arkit.png"/>
+            </a>
+            <Controls handler={setFloorDimensions}/>
+
+            <Slider/>
+            <Canvas
+                shadows
+                // style={{ background: `#${background.toString(16)}` }}
+                // onKeyDown={(e) => {
+                //   return e.code == "Escape" ? setActivePivot(false) : false;
+                // }}
+                tabIndex={0}
+                camera={{
+                    fov: 75,
+                    aspect: window.innerWidth / window.innerHeight,
+                    near: 0.01,
+                    far: 10000,
+                    position: [0, -10, 0],
+                }}
+                gl={{localClippingEnabled: true}}
+            >
+
+
+                <color attach="background" args={["gray"]}/>
+                <Environment preset="apartment"/>
+                <Mline/>
+                <Room/>
+                <Chairss/>
+                {/* <TestBox></TestBox> */}
+                <CameraControl/>
+                <Lights/>
+                <Postprocessing/>
+                <ARComponent/>
+            </Canvas>
+        </>
+    );
 }
+
 export default App;
 

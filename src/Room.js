@@ -59,7 +59,7 @@ const   Room = ({ floorDimensions }) => {
     chairs.length < 2 &&
       addChair({
         position: e.point.toArray(),
-        id: crypto.randomUUID(),
+        id: Math.random(),
         type: selectedFurniture,
         dimensions: {},
       });
