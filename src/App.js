@@ -10,6 +10,7 @@ import { debounce } from "throttle-debounce";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Wall from "./components/wall";
 import Lights from "./components/Lights";
+import { VRButton, ARButton, XR, Controllers, Hands } from '@react-three/xr'
 import * as THREE from "three";
 import DimensionsInput from "./components/dimensions";
 import Slider from "./components/slider";
@@ -56,6 +57,7 @@ function App() {
             <Controls handler={setFloorDimensions}/>
 
             <Slider/>
+            <ARButton />
             <Canvas
                 shadows
                 // style={{ background: `#${background.toString(16)}` }}
@@ -72,6 +74,7 @@ function App() {
                 }}
                 gl={{localClippingEnabled: true}}
             >
+                <ARComponent>
 
 
                 <color attach="background" args={["gray"]}/>
@@ -83,7 +86,8 @@ function App() {
                 <CameraControl/>
                 <Lights/>
                 <Postprocessing/>
-                <ARComponent/>
+
+                </ARComponent>
             </Canvas>
         </>
     );
