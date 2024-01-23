@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useRef, useState, useContext, useEffect, useMemo } from "react";
+import React, {useRef, useState, useContext, useEffect, useMemo, useLayoutEffect} from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Floor from "./components/floor";
 import Mline from "./components/MLine";
@@ -46,10 +46,10 @@ function App() {
   // const isCameraControlsActive = useDimensionStore(
   //   (state) => state.cameraControlsAcitve
   // );
-
-
+const ref = useRef();
 
     return (
+
         <>
             <a id="link" rel="ar" href="" download="asset.usdz">
                 <img id="button" width="100" src="files/arkit.png"/>
@@ -58,6 +58,7 @@ function App() {
 
             <Slider/>
             <ARButton />
+            <button onClick={()=>{console.log(ref.current)}}>eeel</button>
             <Canvas
                 shadows
                 // style={{ background: `#${background.toString(16)}` }}
@@ -74,7 +75,7 @@ function App() {
                 }}
                 gl={{localClippingEnabled: true}}
             >
-                <ARComponent>
+          <XR>
 
 
                 <color attach="background" args={["gray"]}/>
@@ -86,8 +87,8 @@ function App() {
                 <CameraControl/>
                 <Lights/>
                 <Postprocessing/>
-
-                </ARComponent>
+                <ARComponent/>
+          </XR>
             </Canvas>
         </>
     );
