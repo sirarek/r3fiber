@@ -34,6 +34,7 @@ import TestBox from "./Box";
 import {useLoaderData} from "react-router-dom";
 import {getProject} from "./db/db";
 import ARComponent from "./components/ARComponent";
+import SaveAsScreenshotButton from "./components/SaveAsScreenshotButton";
 const log = (c) => {
   console.log(c);
 };
@@ -86,10 +87,13 @@ const ref = useRef();
                 {/* <TestBox></TestBox> */}
                 <CameraControl/>
                 <Lights/>
+
                 <Postprocessing/>
                 <ARComponent/>
           </XR>
+                <SaveAsScreenshotButton/>
             </Canvas>
+
         </>
     );
 }

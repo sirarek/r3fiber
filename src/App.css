@@ -121,3 +121,8 @@ div#close-button {
 div#close-button:hover {
   scale: 1.1;
 }
+.screen-shot-save{
+  position: fixed;
+  bottom: 0;
+left:0;
+}
