@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, {useRef, useState, useContext, useEffect, useMemo, useLayoutEffect} from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
 import Floor from "./components/floor";
 import Mline from "./components/MLine";
 import Postprocessing from "./components/Postprocessing";
@@ -35,11 +35,13 @@ import {useLoaderData} from "react-router-dom";
 import {getProject} from "./db/db";
 import ARComponent from "./components/ARComponent";
 import SaveAsScreenshotButton from "./components/SaveAsScreenshotButton";
+
 const log = (c) => {
   console.log(c);
 };
 
 function App() {
+
   const [floorDimensions, setFloorDimensions] = useState({ x: 5, y: 5 });
   // const [acitvePivot, setActivePivot] = useState(false);
   // const [background,
@@ -52,30 +54,15 @@ const ref = useRef();
     return (
 
         <>
-            <a id="link" rel="ar" href="" download="asset.usdz">
-                <img id="button" width="100" src="files/arkit.png"/>
-            </a>
-            <Controls handler={setFloorDimensions}/>
+            {/*<a id="link" rel="ar" href="" download="asset.usdz">*/}
+            {/*    <img id="button" width="100" src="files/arkit.png"/>*/}
+            {/*</a>*/}
+            {/*<Controls handler={setFloorDimensions}/>*/}
 
-            <Slider/>
-            <ARButton />
-            <button onClick={()=>{console.log(ref.current)}}>eeel</button>
-            <Canvas
-                shadows
-                // style={{ background: `#${background.toString(16)}` }}
-                // onKeyDown={(e) => {
-                //   return e.code == "Escape" ? setActivePivot(false) : false;
-                // }}
-                tabIndex={0}
-                camera={{
-                    fov: 75,
-                    aspect: window.innerWidth / window.innerHeight,
-                    near: 0.01,
-                    far: 10000,
-                    position: [0, -10, 0],
-                }}
-                gl={{localClippingEnabled: true}}
-            >
+            {/*<Slider/>*/}
+            {/*<ARButton />*/}
+            {/*<button onClick={()=>{console.log(ref.current)}}>eeel</button>*/}
+
           <XR>
 
 
@@ -89,10 +76,9 @@ const ref = useRef();
                 <Lights/>
 
                 <Postprocessing/>
-                <ARComponent/>
+                {/*<ARComponent/>*/}
           </XR>
                 <SaveAsScreenshotButton/>
-            </Canvas>
 
         </>
     );

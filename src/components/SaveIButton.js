@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import useDimensionStore from "../store/store";
-import {useShallow} from "zustand/react/shallow";
+
 import {saveData} from "../db/db";
 
 function SaveIButton(props) {
@@ -10,7 +10,7 @@ function SaveIButton(props) {
         thickness,
         chairs,
         wallsHeight
-    } = useDimensionStore(useShallow(state => ({
+    } = useDimensionStore(  (state => ({
         floorX: state.floorX,
         floorY: state.floorY,
         thickness: state.thickness,

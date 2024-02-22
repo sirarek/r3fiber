@@ -1,29 +1,45 @@
-import {createRoot,} from 'react-dom/client'
+
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import App from './App'
-import React from "react";
 
-    import {loader as projectLoader} from "./Room";
-    const router = createBrowserRouter([
-        {
-            path: "/",
-            element: <App/>,
-            loader:projectLoader,
+import {loader as projectLoader} from "./Room";
+import * as THREE from 'three';
+import {extend,createRoot,events} from "@react-three/fiber";
+
+extend(THREE);
 
 
-            children:[
+const root = createRoot(document.querySelector('canvas'))
+root.configure({ events, camera: { position: [0, 0, 50] } })
+window.addEventListener('resize', () => {
+    root.configure({ size: { width: window.innerWidth, height: window.innerHeight } })
+})
+window.dispatchEvent(new Event('resize'))
 
 
 
-         {     element: <App/>,
-             path: "/:projId",
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App/>,
+        loader: projectLoader,
 
 
-         }]}
-    ])
+        children: [
 
-createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+
+            {
+                element: <App/>,
+                path: "/:projId",
+
+
+            }]
+    }
+])
+
+
+root.render(
+
+        <RouterProvider router={router}/>
+
 );

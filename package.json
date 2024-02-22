@@ -20,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2",
-    "react-scripts": "^5.0.1",
     "sort-by": "^1.2.0",
     "three": "^0.158.0",
     "throttle-debounce": "^5.0.0",
@@ -29,8 +28,8 @@
     "zustand": "^4.3.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "r3f-pack start",
+    "build": "r3f-pack build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@react-three/babel": "^1.0.2",
+    "r3f-pack": "^2.7.2"
   }
 }
